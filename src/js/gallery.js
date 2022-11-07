@@ -3,6 +3,7 @@ import Notiflix from 'notiflix';
 import { lightbox } from './lightbox';
 import { smoothScroll } from './smooth-scroll';
 import { refs } from './refs';
+import sal from 'sal.js';
 import {
   renderCardsByQuery,
   attachedCards,
@@ -13,15 +14,21 @@ import {
 
 let currentPage = 1;
 
+const scrollAnimations = sal({
+  once: true,
+});
+sal();
+
 refs.form.addEventListener('submit', onSearch);
-refs.loadMoreBtn.addEventListener('click', loadMore);
+window.addEventListener('DOMContentLoaded', onSearch);
+// refs.loadMoreBtn.addEventListener('click', loadMore);
 refs.form.searchQuery.addEventListener('input', () => {
   currentPage = 1;
 });
 
 async function onSearch(e) {
   e.preventDefault();
-  hiddenBtn();
+  // hiddenBtn();
 
   refs.gallery.innerHTML = '';
   const { searchQuery = '' } = e.currentTarget;
@@ -38,22 +45,26 @@ async function onSearch(e) {
 
     insertHTMLBySearch(renderCardsByQuery(response));
     lightbox.refresh();
+    scrollAnimations.update();
     smoothScroll();
-    if (hits.length == PER_PAGE) showBtn();
+    // if (hits.length == PER_PAGE) showBtn();
   }
 }
 
-async function loadMore(e) {
+async function loadMore() {
   currentPage += 1;
   const response = await fetchImages(refs.form.searchQuery.value, currentPage);
 
   await attachedCards(renderCardsByQuery(response));
   lightbox.refresh();
   smoothScroll();
+  scrollAnimations.update();
   if (refs.gallery.children.length === response.data.totalHits) {
     Notiflix.Notify.info(
       "We're sorry, but you've reached the end of search results."
     );
-    hiddenBtn();
+    // hiddenBtn();
   }
 }
+
+export { loadMore, currentPage };

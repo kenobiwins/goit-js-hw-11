@@ -2,6 +2,19 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
+  padding: 4px;
+  height: 100%;
+  justify-content: space-between;
+  border-bottom: 1px solid black;
 }
 .info {
+  padding: 4px;
+}
+.info-item {
+  &:hover .icon {
+    transform: scale(1.1);
+  }
+  &:hover {
+    color: cadetblue;
+  }
 }
