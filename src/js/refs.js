@@ -3,6 +3,7 @@ const refs = {
   gallery: document.querySelector('.gallery'),
   loadMoreBtn: document.querySelector('.load-more'),
   title: document.querySelector('.title-gallery'),
+  buttonUp: document.querySelector('.button-up'),
 };
 
 export { refs };
