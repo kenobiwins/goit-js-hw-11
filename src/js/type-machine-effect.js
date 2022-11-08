@@ -21,10 +21,10 @@ function typeLine() {
     result += text[line][count];
     title.textContent = result + '|';
 
-    count++;
+    count += 1;
     if (count >= text[line].length) {
       count = 0;
-      line++;
+      line += 1;
       if (line == text.length) {
         clearTimeout(interval);
         title.textContent = result;
@@ -32,7 +32,7 @@ function typeLine() {
       }
     }
     typeLine();
-  }, getRandom(getRandom(350)));
+  }, getRandom(getRandom(250)));
 }
 
 function getRandom(max) {
