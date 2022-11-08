@@ -1,12 +1,12 @@
-@keyframes bounce-up {
-  from {
-    transform: translateY(-5px);
-  }
+// @keyframes bounce-up {
+//   from {
+//     transform: translateY(-5px);
+//   }
 
-  to {
-    transform: translateY(5px);
-  }
-}
+//   to {
+//     transform: translateY(5px);
+//   }
+// }
 
 .button-up {
   display: flex;
@@ -18,19 +18,24 @@
   position: fixed;
   bottom: 30px;
   right: 30px;
-  opacity: 1;
 
   z-index: 10;
   color: var(--white-color);
+  transform: scale(1.1);
 
-  animation: bounce-up 1200ms linear infinite alternate both;
+  // animation: bounce-up 1200ms linear infinite alternate both;
   opacity: 0.7;
   border-radius: 50%;
   background-color: var(--border-color);
   transition: color var(--transition), box-shadow var(--transition),
-    opacity var(--transition);
+    opacity var(--transition), transform var(--transition);
 
   &:hover {
     box-shadow: 0px 0px 0px 6px var(--shad-color);
   }
+}
+
+.button-up.visually-hidden {
+  transform: scale(0.4);
+  opacity: 0;
 }
