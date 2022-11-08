@@ -3,7 +3,7 @@ const title = document.querySelector('.title-gallery');
 window.addEventListener('DOMContentLoaded', typeLine);
 
 const text = [
-  'Search images?... ',
+  'looking for images?... ',
   'Cats?... ',
   'Dogs?... ',
   'Volkswagen Golf?... ',
