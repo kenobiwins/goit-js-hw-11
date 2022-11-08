@@ -142,10 +142,15 @@ function showBtn() {
   refs.loadMoreBtn.classList.remove('visually-hidden');
 }
 
+function hideTitle() {
+  refs.title.classList.add('visually-hidden');
+}
+
 export {
   renderCardsByQuery,
   attachedCards,
   insertHTMLBySearch,
   hiddenBtn,
   showBtn,
+  hideTitle,
 };

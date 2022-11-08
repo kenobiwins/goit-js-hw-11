@@ -3,12 +3,12 @@ const title = document.querySelector('.title-gallery');
 window.addEventListener('DOMContentLoaded', typeLine);
 
 const text = [
-  'Search images?...',
-  'Cats?...',
-  'Dogs?...',
-  'Volkswagen Golf?...',
-  'Beef?...',
-  'No?',
+  'Search images?... ',
+  'Cats?... ',
+  'Dogs?... ',
+  'Volkswagen Golf?... ',
+  'Beef?... ',
+  'No? ',
   'Why? Are you vegetarian ?',
 ];
 

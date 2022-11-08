@@ -1,15 +1,18 @@
-import { fetchImages, PER_PAGE } from './API';
 import Notiflix from 'notiflix';
 import { lightbox } from './lightbox';
+import sal from 'sal.js';
+import throttle from 'lodash.throttle';
+
+import { fetchImages, PER_PAGE } from './API';
 import { smoothScroll } from './smooth-scroll';
 import { refs } from './refs';
-import sal from 'sal.js';
 import {
   renderCardsByQuery,
   attachedCards,
   insertHTMLBySearch,
-  hiddenBtn,
-  showBtn,
+  hideTitle,
+  // hiddenBtn,
+  // showBtn,
 } from './utils';
 
 let currentPage = 1;
@@ -20,11 +23,22 @@ const scrollAnimations = sal({
 sal();
 
 refs.form.addEventListener('submit', onSearch);
-window.addEventListener('DOMContentLoaded', onSearch);
+window.addEventListener('DOMContentLoaded', defaultContentLoad);
 // refs.loadMoreBtn.addEventListener('click', loadMore);
-refs.form.searchQuery.addEventListener('input', () => {
-  currentPage = 1;
-});
+refs.form.searchQuery.addEventListener(
+  'input',
+  throttle(() => {
+    currentPage = 1;
+  }, 500)
+);
+
+async function defaultContentLoad(e) {
+  const response = await fetchImages('', currentPage);
+
+  insertHTMLBySearch(renderCardsByQuery(response));
+  lightbox.refresh();
+  scrollAnimations.update();
+}
 
 async function onSearch(e) {
   e.preventDefault();
@@ -44,6 +58,7 @@ async function onSearch(e) {
     Notiflix.Notify.success(`Hooray! We found ${totalHits} images.`);
 
     insertHTMLBySearch(renderCardsByQuery(response));
+    hideTitle();
     lightbox.refresh();
     scrollAnimations.update();
     smoothScroll();
