@@ -4,6 +4,7 @@ const refs = {
   loadMoreBtn: document.querySelector('.load-more'),
   title: document.querySelector('.title-gallery'),
   buttonUp: document.querySelector('.button-up'),
+  download: document.querySelector('.download'),
 };
 
 export { refs };

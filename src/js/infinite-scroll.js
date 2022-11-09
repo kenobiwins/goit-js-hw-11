@@ -1,8 +1,9 @@
 import { loadMore, currentPage } from './gallery';
 import throttle from 'lodash.throttle';
+import { debounce } from 'debounce';
 import { hideTitle } from './utils';
 
-window.addEventListener('scroll', throttle(checkScrollPosition, 500));
+window.addEventListener('scroll', debounce(checkScrollPosition, 500));
 window.addEventListener('resize', throttle(checkScrollPosition, 500));
 
 async function checkScrollPosition(e) {

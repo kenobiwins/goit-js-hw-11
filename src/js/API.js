@@ -22,5 +22,15 @@ async function fetchImages(searchQuery, currentPage) {
     console.log(error);
   }
 }
-
-export { fetchImages, PER_PAGE };
+async function downloadImage(href) {
+  try {
+    const promise = await axios.get({
+      url: href,
+      responseType: 'blob',
+    });
+    return promise;
+  } catch (error) {
+    console.log(error);
+  }
+}
+export { fetchImages, downloadImage, PER_PAGE };

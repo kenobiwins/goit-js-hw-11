@@ -3,7 +3,7 @@ import { lightbox } from './lightbox';
 import sal from 'sal.js';
 import throttle from 'lodash.throttle';
 
-import { fetchImages, PER_PAGE } from './API';
+import { fetchImages, downloadImage, PER_PAGE } from './API';
 import { smoothScroll } from './smooth-scroll';
 import { refs } from './refs';
 import {
@@ -62,6 +62,7 @@ async function onSearch(e) {
     lightbox.refresh();
     scrollAnimations.update();
     smoothScroll();
+
     // if (hits.length == PER_PAGE) showBtn();
   }
 }
@@ -72,7 +73,7 @@ async function loadMore() {
 
   await attachedCards(renderCardsByQuery(response));
   lightbox.refresh();
-  smoothScroll();
+  // smoothScroll();
   scrollAnimations.update();
   if (refs.gallery.children.length === response.data.totalHits) {
     Notiflix.Notify.info(

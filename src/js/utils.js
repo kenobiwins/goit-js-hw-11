@@ -95,7 +95,7 @@ function renderCardsByQuery(obj) {
 </svg>
     <p class='info-text'>${comments}</p>
     </li>
-    <li class="info-item">
+    <li class="info-item download" data-load='${largeImageURL}'>
 <svg class="icon">
   // <use href="./images/sprite.svg#icon-download"></use>
   <path d="M6.4 14.936h2.136v2.136h-2.136v-2.136z"></path>
@@ -114,7 +114,7 @@ function renderCardsByQuery(obj) {
 <path d="M27.736 27.736h2.136v2.136h-2.136v-2.136z"></path>
 <path d="M23.464 29.864h-19.2v2.136h23.472v-2.136h-2.136z"></path>
 </svg>
-    <p class='info-text'>${downloads}</p>
+    <p class='info-text download-btn'>${downloads}</p>
     </li>
   </ul>
 </div>`;
